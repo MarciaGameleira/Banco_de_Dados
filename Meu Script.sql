@@ -23,3 +23,30 @@ SHOW TABLES;
 /*Solicitando ao banco para exibir a estrutura da tabela, utiliza-se o comando 'DESC'.*/
 DESC CLIENTE;
 
+/*Mostrando todos os dados da tabela utilizando o (*).*/
+SELECT * FROM CLIENTE;
+
+/*Inserindo dados de exemplo na tabela.*/
+INSERT INTO CLIENTE VALUES ('JOAO','M','JOAO@GMAIL.COM',988638273,'22923110','MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ');
+INSERT INTO CLIENTE VALUES('CELIA','F','CELIA@GMAIL.COM',541521456,'25078869','RIACHUELO - CENTRO - RIO DE JANEIRO - RJ');
+INSERT INTO CLIENTE VALUES('JORGE','M',NULL,885755896,'58748895','OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
