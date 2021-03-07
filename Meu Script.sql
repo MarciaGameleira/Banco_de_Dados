@@ -18,6 +18,7 @@ CREATE TABLE CLIENTE (
 );
 
 /*Solicitando ao banco para mostrar as tabelas existentes.*/
+/*O comando SHOW TABLES só funciona no MySQL*/
 SHOW TABLES;
 
 /*Solicitando ao banco para exibir a estrutura da tabela, utiliza-se o comando 'DESC'.*/
@@ -35,16 +36,21 @@ INSERT INTO CLIENTE VALUES('JORGE','M',NULL,885755896,'58748895','OSCAR CURY - B
 /* INSERT INTO CLIENTE (COL1, COL2, COL3, COL4, COL5, ..., COLn) VALUES (insira os dados aqui, separados por vírgula.);*/
 INSERT INTO CLIENTE (NOME, SEXO, ENDERECO, TELEFONE, CPF) VALUES ('LILIAN','F','SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ','947785696',887774856); 
 /*No caso acima não foi informado dados referente ao email, e nem a coluna foi especificada.*/
+INSERT INTO CLIENTE VALUES('ANA','F','ANA@GLOBO.COM',85548962,'548556985','PRES ANTONIO CARLOS - CENTRO - SAO PAULO - SP'),
+                          ('CARLA','F','CARLA@TERATI.COM.BR',7745828,'66587458','SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG');
 
-
+/*As linhas abaixo apresentarão erros na inserção por conta do execesso de caracteres no campo do CPF*/
 INSERT INTO CLIENTE (NOME, SEXO, ENDERECO, TELEFONE, CPF) VALUES ('CLARA','F','SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ','883665843',99999999999);
 INSERT INTO CLIENTE (NOME, SEXO, ENDERECO, TELEFONE, CPF) VALUES ('CLARA','F','SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ','883665843',22222222222);
 
+/*Exs. de projeção de dados no banco com uso de 'alias' com a palavra reservada AS.*/
+SELECT NOW() AS DATA_HORA;
+SELECT 'MARCIA GAMELEIRA' AS NOME;
 
-
-
-
-
+/*Filtrando dados com a cláusula WHERE e LIKE*/
+SELECT NOME, SEXO FROM CLIENTE; /*Selecionando colunas específicas.*/
+SELECT NOME, SEXO FROM CLIENTE WHERE SEXO = 'F';
+SELECT NOME, ENDERECO FROM CLIENTE WHERE SEXO = 'M';
 
 
 
