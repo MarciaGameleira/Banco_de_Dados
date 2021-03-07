@@ -1,14 +1,103 @@
 /* Considerando o que vc aprendeu sobre performance, resolva os exercicios abaixo */
 
-/*Traga os funcionarios que trabalhem no departamento de filmes OU no departamento de roupas*/
+/*01 - Traga os funcionarios que trabalhem no departamento de filmes OU no departamento de roupas*/
 
-/*Como estamos trabalhando com OR e a segunda condicao é opcional colocamos na primeira condicao quem tem mais chances de uma saida
+SELECT * FROM FUNCIONARIOS WHERE DEPARTAMENTO = 'FILMES' OR DEPARTAMENTO = 'ROUPAS';
+/* +------------+------------+-----------------------------------+-----------+--------------+------------+---------+-------------------------------+----------+
+| idFuncionario | nome       | email                             | sexo      | departamento | admissao   | salario | cargo                         | idRegiao |
++---------------+------------+-----------------------------------+-----------+--------------+------------+---------+-------------------------------+----------+
+|            12 | Black      | mblackb@edublogs.org              | Masculino | Roupas       | 2/4/2003   |   44179 | Data Coordiator               |        7 |
+|            29 | Price      | cprices@Brasil.gov                | Feminino  | Roupas       | 7/5/2013   |   95436 | Quality Engineer              |        3 |
+|            40 | Hawkins    | phawkins13@twitpic.com            | Feminino  | Roupas       | 8/20/2011  |   76809 | Quality Engineer              |        6 |
+|            47 | Oliver     | joliver1a@cnbc.com                | Feminino  | Roupas       | 8/30/2013  |   42797 | Software Engineer III         |        5 |
+|            79 | Cunningham | acunningham26@simplemachines.org  | Masculino | Roupas       | 9/15/2002  |   88345 | Junior Executive              |        6 |
+|           108 | Perkins    | jperkins2z@prlog.org              | Masculino | Roupas       | 7/14/2005  |   68344 | Senior Cost Accountant        |        7 |
+|           109 | Freeman    | bfreeman30@fda.gov                | Feminino  | Roupas       | 10/14/2007 |  147868 | General Manager               |        6 |
+|           115 | Nguyen     | rnguyen36@bandcamp.com            | Feminino  | Roupas       | 6/30/2007  |   58420 | Graphic Designer              |        1 |
+|           119 | Washington | wwashington3a@dot.gov             | Feminino  | Roupas       | 10/6/2008  |  148408 | Speech Pathologist            |        3 |
+|           176 | Fisher     | rfisher4v@jigsy.com               | Masculino | Roupas       | 10/14/2012 |   67942 | Financial Advisor             |        6 |
+|           177 | Ferguson   | nferguson4w@networksolutions.com  | Feminino  | Roupas       | 9/18/2008  |   80397 | Compensation Analyst          |        1 |
+|           185 | Watson     | rwatson54@webeden.co.uk           | Feminino  | Roupas       | 9/22/2001  |   74648 | Saúde Coach III               |        2 |
+|           231 | Day        | lday6e@usgs.gov                   | Feminino  | Roupas       | 7/3/2005   |   87800 | Sales Associate               |        7 |
+|           238 | Gonzales   | cgonzales6l@berkeley.edu          | Masculino | Filmes       | 4/6/2014   |  131274 | Clinical Specialist           |        2 |
+|           241 | Rose       | jrose6o@dion.ne.jp                | Feminino  | Roupas       | 12/22/2010 |  107207 | Web Developer II              |        3 |
+|           263 | Snyder     | dsnyder7a@digg.com                | Masculino | Filmes       | 1/29/2005  |  109004 | Account Coordinator           |        5 |
+|           273 | Gordon     | egordon7k@yellowbook.com          | Feminino  | Filmes       | 1/6/2013   |  142840 | Account Coordinator           |        1 |
+|           277 | Richardson | lrichardson7o@fc2.com             | Feminino  | Roupas       | 7/14/2003  |  142403 | Engineer III                  |        3 |
+|           294 | Cooper     | icooper85@w3.org                  | Feminino  | Filmes       | 1/31/2009  |   61519 | Human Resources Assistant III |        7 |
+|           298 | Berry      | lberry89@gov.uk                   | Masculino | Roupas       | 6/17/2010  |   43067 | Research Assistant I          |        7 |
+|           300 | Arnold     | barnold8b@thetimes.co.uk          | Masculino | Roupas       | 11/15/2005 |   77635 | VP Product Management         |        3 |
+|           312 | Jordan     | pjordan8n@adobe.com               | Feminino  | Roupas       | 11/15/2003 |  133498 | Nuclear Power Engineer        |        7 |
+|           325 | Wright     | kwright90@buzzfeed.com            | Feminino  | Roupas       | 5/13/2012  |  107727 | Computer Systems Analyst I    |        2 |
+|           337 | Spencer    | dspencer9c@ed.gov                 | Masculino | Filmes       | 6/16/2008  |   83256 | Senior Editor                 |        5 |
+|           365 | Gonzales   | jgonzalesa4@cpanel.net            | Masculino | Roupas       | 8/30/2000  |  127393 | Help Desk Technician          |        7 |
+|           383 | Young      | pyoungam@theguardian.com          | Masculino | Roupas       | 12/10/2002 |  104079 | Systems Administrator IV      |        4 |
+|           391 | White      | cwhiteau@amazon.de                | Feminino  | Roupas       | 11/4/2003  |  147702 | VP Quality Control            |        4 |
+|           402 | Marshall   | emarshallb5@yahoo.co.jp           | Feminino  | Roupas       | 11/10/2007 |   93266 | Recruiter                     |        7 |
+|           429 | Ortiz      | jortizbw@t.co                     | Feminino  | Roupas       | 1/23/2003  |   75024 | Structural Analysis Engineer  |        6 |
+|           437 | Roberts    | arobertsc4@businessweek.com       | Masculino | Filmes       | 7/10/2007  |   48934 | Electrical Engineer           |        6 |
+|           439 | Boyd       | eboydc6@unc.edu                   | Masculino | Roupas       | 4/1/2002   |  108854 | Senior Editor                 |        4 |
+|           449 | Gray       | tgraycg@fotki.com                 | Feminino  | Roupas       | 4/20/2014  |  134205 | Biostatistician I             |        4 |
+|           458 | Little     | dlittlecp@usatoday.com            | Feminino  | Filmes       | 5/14/2000  |   91660 | Research Assistant I          |        5 |
+|           490 | Griffin    | bgriffindl@pbs.org                | Masculino | Filmes       | 4/8/2000   |  116480 | Nurse Practicioner            |        5 |
+|           515 | Gomez      | kgomezea@bloglovin.com            | Masculino | Roupas       | 5/1/2002   |   55747 | Human Resources Assistant I   |        1 |
+|           521 | Williamson | dwilliamsoneg@creativecommons.org | Masculino | Roupas       | 10/6/2003  |  118602 | Director of Sales             |        5 |
+|           527 | Richards   | jrichardsem@1688.com              | Masculino | Roupas       | 4/20/2005  |   69705 | Senior Developer              |        3 |
+|           539 | Kelley     | rkelleyey@feedburner.com          | Masculino | Filmes       | 3/20/2012  |  110660 | Senior Financial Analyst      |        4 |
+|           560 | Kim        | jkimfj@dropbox.com                | Masculino | Roupas       | 1/22/2014  |   67845 | Administrative Officer        |        7 |
+|           570 | James      | rjamesft@jiathis.com              | Feminino  | Roupas       | 3/21/2001  |  136377 | Software Engineer I           |        7 |
+|           576 | Taylor     | staylorfz@issuu.com               | Masculino | Roupas       | 7/13/2006  |   50235 | Assistant Media Planner       |        1 |
+|           578 | Lynch      | hlynchg1@washingtonpost.com       | Masculino | Roupas       | 5/2/2006   |  111318 | Technical Writer              |        3 |
+|           589 | Arnold     | sarnoldgc@parallels.com           | Masculino | Filmes       | 1/27/2005  |  135786 | Account Representative I      |        7 |
+|           604 | Greene     | agreenegr@cmu.edu                 | Masculino | Roupas       | 6/30/2004  |  104517 | Research Assistant III        |        2 |
+|           615 | Alexander  | falexanderh2@irs.gov              | Feminino  | Roupas       | 12/25/2009 |   72854 | Marketing Assistant           |        7 |
+|           618 | Phillips   | wphillipsh5@economist.com         | Masculino | Roupas       | 6/7/2001   |  128205 | Sales Representative          |        6 |
+|           642 | Warren     | awarrenht@addthis.com             | Feminino  | Filmes       | 5/15/2009  |  126201 | Electrical Engineer           |        2 |
+|           657 | Reid       | areidi8@wunderground.com          | Feminino  | Roupas       | 6/29/2013  |   65154 | Sales Representative          |        5 |
+|           699 | Price      | bpriceje@icio.us                  | Feminino  | Roupas       | 1/25/2003  |  133091 | VP Accounting                 |        7 |
+|           705 | Clark      | pclarkjk@joomla.org               | Masculino | Filmes       | 10/25/2009 |   97150 | VP Accounting                 |        6 |
+|           711 | Roberts    | jrobertsjq@ed.gov                 | Masculino | Roupas       | 8/21/2009  |   80743 | Geological Engineer           |        4 |
+|           722 | Hill       | khillk1@about.me                  | Feminino  | Roupas       | 8/31/2002  |   73262 | Information Systems Manager   |        5 |
+|           727 | Johnson    | mjohnsonk6@sciencedaily.com       | Masculino | Filmes       | 5/21/2012  |   83165 | Account Representative I      |        5 |
+|           732 | Murray     | amurraykb@blinklist.com           | Masculino | Roupas       | 8/15/2004  |   50511 | Senior Cost Accountant        |        3 |
+|           735 | Richards   | jrichardske@hatena.ne.jp          | Masculino | Roupas       | 11/14/2014 |  116333 | Legal Assistant               |        5 |
+|           748 | Elliott    | delliottkr@dot.gov                | Masculino | Roupas       | 12/9/2009  |  119097 | Administrative Assistant I    |        2 |
+|           772 | Elliott    | delliottlf@fda.gov                | Masculino | Filmes       | 10/13/2004 |  100570 | Senior Financial Analyst      |        5 |
+|           776 | Olson      | kolsonlj@friendfeed.com           | Feminino  | Roupas       | 9/27/2013  |  107535 | Office Assistant III          |        7 |
+|           782 | Weaver     | jweaverlp@unblog.fr               | Masculino | Filmes       | 11/9/2011  |  120226 | Software Engineer II          |        4 |
+|           789 | James      | kjameslw@yellowbook.com           | Masculino | Roupas       | 3/20/2005  |  130188 | Structural Analysis Engineer  |        1 |
+|           799 | Sims       | asimsm6@lycos.com                 | Feminino  | Roupas       | 3/9/2013   |  146024 | Actuary                       |        7 |
+|           801 | Gomez      | tgomezm8@ucoz.ru                  | Feminino  | Filmes       | 9/20/2012  |  101582 | Biostatistician II            |        7 |
+|           802 | Knight     | dknightm9@quantcast.com           | Feminino  | Filmes       | 5/30/2006  |  100716 | Help Desk Operator            |        3 |
+|           818 | Rice       | jricemp@columbia.edu              | Feminino  | Filmes       | 4/5/2002   |   82077 | Data Coordiator               |        4 |
+|           847 | Knight     | dknightni@unc.edu                 | Feminino  | Roupas       | 3/22/2008  |   91532 | Operator                      |        4 |
+|           856 | Roberts    | trobertsnr@over-blog.com          | Feminino  | Roupas       | 2/21/2004  |  139714 | Help Desk Operator            |        2 |
+|           868 | Price      | jpriceo3@google.it                | Masculino | Filmes       | 1/24/2003  |   52612 | Analyst Programmer            |        7 |
+|           913 | Kelley     | mkelleypc@sourceforge.net         | Feminino  | Roupas       | 2/20/2012  |  116266 | Marketing Assistant           |        6 |
+|           919 | Bishop     | kbishoppi@ovh.net                 | Feminino  | Filmes       | 12/18/2010 |   53798 | Mechanical Systems Engineer   |        1 |
+|           929 | Rice       | ericeps@reference.com             | Feminino  | Roupas       | 8/8/2003   |   66357 | Cost Accountant               |        3 |
+|           955 | Marshall   | wmarshallqi@fastcompany.com       | Masculino | Roupas       | 4/18/2005  |   59234 | VP Product Management         |        7 |
+|           963 | Burton     | cburtonqq@github.io               | Feminino  | Roupas       | 6/20/2012  |   58697 | Teacher                       |        4 |
+|           969 | Richards   | jrichardsqw@blog.com              | Masculino | Roupas       | 7/5/2014   |   85294 | Media Manager I               |        4 |
+|           973 | Walker     | swalkerr0@sina.com.cn             | Feminino  | Filmes       | 5/11/2009  |   51132 | Assistant Manager             |        4 |
++---------------+------------+-----------------------------------+-----------+--------------+------------+---------+-------------------------------+----------+*/
+
+SELECT DEPARTAMENTO, COUNT(*) FROM FUNCIONARIOS WHERE DEPARTAMENTO = 'FILMES' OR DEPARTAMENTO = 'ROUPAS' 
+GROUP BY DEPARTAMENTO;
+/*+------------+----------+
+| DEPARTAMENTO | COUNT(*) |
++--------------+----------+
+| Roupas       |       53 |
+| Filmes       |       21 |
++--------------+----------+*/
+
+/*02 - Como estamos trabalhando com OR e a segunda condicao é opcional colocamos na primeira condicao quem tem mais chances de uma saida
 verdadeira, pois a segunda condicao nao será checada nesse caso.*/
 
-/*O gestor de marketing pediu a lista das funcionarias (AS) = FEMININO que trabalhem no departamento de filmes ou no departamento lar.
+/*03 - O gestor de marketing pediu a lista das funcionarias (AS) = FEMININO que trabalhem no departamento de filmes ou no departamento lar.
 Ele necessita enviar um email para as colaboradoras desses dois setores. OR +  AND */
 
-/*Traga os funcionarios do sexo masculino ou os funcionarios que trabalhem no setor Jardim*/
+/*04 - Traga os funcionarios do sexo masculino ou os funcionarios que trabalhem no setor Jardim*/
 
 create database projeto2;
 
@@ -25,6 +114,8 @@ create table funcionarios(
       cargo varchar(100),
       idRegiao int
 );
+
+/*Inserindo dados de testes.*/
 
 insert into funcionarios values (1,'Kelley','rkelley0@soundcloud.com','Feminino','Computadores','10/2/2009',67470,'Structural Engineer',2);
 insert into funcionarios values (2,'Armstrong','sarmstrong1@infoseek.co.jp','Masculino','Esporte','3/31/2008',71869,'Financial Advisor',2);
