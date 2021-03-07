@@ -61,7 +61,23 @@ SELECT * FROM CLIENTE WHERE ENDERECO LIKE '%MG';
  | CARLA | F    | CARLA@TERATI.COM.BR |   7745828 | 66587458 | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG   |
  +-------+------+---------------------+-----------+----------+-----------------------------------------------+*/
  
- 
+ SELECT NOME, SEXO, EMAIL FROM CLIENTE WHERE ENDERECO LIKE '%SP';
+/*+------+------+---------------+
+| NOME | SEXO | EMAIL         |
++------+------+---------------+
+| ANA  | F    | ANA@GLOBO.COM |
++------+------+---------------+*/
+
+SELECT * FROM CLIENTE WHERE ENDERECO LIKE '%CENTRO%';
+/*+-------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| NOME  | SEXO | EMAIL               | CPF       | TELEFONE  | ENDERECO                                      |
++-------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| CELIA | F    | CELIA@GMAIL.COM     | 541521456 | 25078869  | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ      |
+| ANA   | F    | ANA@GLOBO.COM       |  85548962 | 548556985 | PRES ANTONIO CARLOS - CENTRO - SAO PAULO - SP |
+| CARLA | F    | CARLA@TERATI.COM.BR |   7745828 | 66587458  | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG   |
++-------+------+---------------------+-----------+-----------+-----------------------------------------------+*/
+
+
 
 
 
