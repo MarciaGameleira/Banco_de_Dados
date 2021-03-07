@@ -66,16 +66,16 @@ SELECT NOME_DO_LIVRO, PRECO FROM LIVRO WHERE UF_DA_EDITORA = 'SP';
 +------------------+-------+*/
 
 /*6 – Trazer os dados dos autores do sexo masculino que tiveram livros publicados por São Paulo ou Rio de Janeiro (Questão Desafio).*/
-SELECT * FROM LIVRO 
+SELECT NOME_DO_AUTOR, SEXO FROM LIVRO 
 WHERE SEXO = 'M' AND (UF_DA_EDITORA = 'SP' OR UF_DA_EDITORA = 'RJ');
 /*
-+-------------------+----------------+------+--------------+-----------------+--------+---------------+-------------------+
-| NOME_DO_LIVRO     | NOME_DO_AUTOR  | SEXO | N_DE_PAGINAS | NOME_DA_EDITORA | PRECO  | UF_DA_EDITORA | ANO_DE_PUBLICACAO |
-+-------------------+----------------+------+--------------+-----------------+--------+---------------+-------------------+
-| SQL para leigos   | João Nunes     | M    | 450          | Addison         |  98.00 | SP            | 2018              |
-| Pessoas Efetivas  | Eduardo Santos | M    | 390          | Beta            |  78.00 | RJ            | 2018              |
-| Habitos Saudáveis | Eduardo Santos | M    | 630          | Beta            | 150.00 | RJ            | 2019              |
-+-------------------+----------------+------+--------------+-----------------+--------+---------------+-------------------+*/
++-------------------+------+
+| NOME_DO_LIVRO     | SEXO |
++-------------------+------+
+| SQL para leigos   | M    |
+| Pessoas Efetivas  | M    |
+| Habitos Saudáveis | M    |
++-------------------+------+*/
 
 /*Criação do banco*/
 CREATE DATABASE LIVRARIA;
@@ -103,3 +103,5 @@ INSERT INTO LIVRO VALUES('Estacio Querido','Geraldo Francisco','M',310,'Insignia
 INSERT INTO LIVRO VALUES('Pra sempre amigas','Leda Silva','F',510,'Insignia',78,'ES',2011);
 INSERT INTO LIVRO VALUES('Copas Inesqueciveis','Marco Alcantara','M',200,'Larson',130,'RS',2018);
 INSERT INTO LIVRO VALUES('O poder da mente','Clara Mafra','F',120,'Continental',56,'SP',2017);
+
+

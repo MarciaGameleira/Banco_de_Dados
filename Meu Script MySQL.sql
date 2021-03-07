@@ -77,9 +77,40 @@ SELECT * FROM CLIENTE WHERE ENDERECO LIKE '%CENTRO%';
 | CARLA | F    | CARLA@TERATI.COM.BR |   7745828 | 66587458  | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG   |
 +-------+------+---------------------+-----------+-----------+-----------------------------------------------+*/
 
+/*Filtros com operadores lógicos: AND e OR.*/
+USE PROJETO;
 
+SELECT NOME, SEXO, ENDERECO FROM CLIENTE
+WHERE 
+SEXO = 'M' OR ENDERECO LIKE '%RJ';
 
+SELECT NOME, SEXO, ENDERECO FROM CLIENTE
+WHERE 
+SEXO = 'M' AND ENDERECO LIKE '%RJ';
 
+SELECT NOME, SEXO, ENDERECO  FROM CLIENTE
+WHERE
+SEXO = 'F' OR ENDERECO LIKE '%ESTACIO';
+
+SELECT NOME, SEXO, ENDERECO  FROM CLIENTE
+WHERE 
+SEXO = 'M' AND ENDERECO LIKE '%RJ';
+
+SELECT NOME, SEXO, ENDERECO FROM CLIENTE
+WHERE
+SEXO = 'F' AND ENDERECO LIKE '%ESTACIO';
+
+/*Funções COUNT and GROUP BY.*/
+SELECT COUNT(*) AS 'QTDE DE REGISTROS' FROM CLIENTE;
+
+SELECT SEXO, COUNT(*) AS 'QTDE' FROM CLIENTE GROUP BY SEXO;
+/* +------+------+
+   | SEXO | QTDE |
+   +------+------+
+   | M    |    2 |
+   | F    |    4 |
+   +------+------+*/
+   
 
 
 
