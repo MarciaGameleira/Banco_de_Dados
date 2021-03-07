@@ -91,13 +91,62 @@ GROUP BY DEPARTAMENTO;
 | Filmes       |       21 |
 +--------------+----------+*/
 
-/*02 - Como estamos trabalhando com OR e a segunda condicao é opcional colocamos na primeira condicao quem tem mais chances de uma saida
-verdadeira, pois a segunda condicao nao será checada nesse caso.*/
-
-/*03 - O gestor de marketing pediu a lista das funcionarias (AS) = FEMININO que trabalhem no departamento de filmes ou no departamento lar.
+/*02 - O gestor de marketing pediu a lista das funcionarias que trabalhem no departamento de filmes ou no departamento lar.
 Ele necessita enviar um email para as colaboradoras desses dois setores. OR +  AND */
 
-/*04 - Traga os funcionarios do sexo masculino ou os funcionarios que trabalhem no setor Jardim*/
+SELECT NOME, EMAIL FROM FUNCIONARIOS 
+WHERE (SEXO = 'FEMININO') AND (DEPARTAMENTO = 'FILMES' OR DEPARTAMENTO = 'LAR');
+/*+----------+-----------------------------------+
+| NOME       | EMAIL                             |
++------------+-----------------------------------+
+| Porter     | vporterp@yelp.com                 |
+| Owens      | cowensq@shareasale.com            |
+| Cruz       | rcruz10@blinklist.com             |
+| Washington | jwashington21@squidoo.com         |
+| Gilbert    | hgilbert29@xrea.com               |
+| Montgomery | rmontgomery3n@chicagotribune.com  |
+| Diaz       | sdiaz64@disqus.com                |
+| Freeman    | gfreeman74@bloomberg.com          |
+| Gordon     | egordon7k@yellowbook.com          |
+| Cooper     | icooper85@w3.org                  |
+| Gibson     | bgibson8o@pen.io                  |
+| Crawford   | mcrawford8u@parallels.com         |
+| Campbell   | pcampbell9b@istockphoto.com       |
+| Gonzales   | jgonzales9s@sourceforge.net       |
+| Payne      | jpayneal@comsenz.com              |
+| Cooper     | scooperb1@cmu.edu                 |
+| Chapman    | schapmanb6@nhs.uk                 |
+| Williams   | swilliamsbc@bing.com              |
+| Morales    | dmoralesbl@mit.edu                |
+| Berry      | jberrybr@discuz.net               |
+| Little     | dlittlecp@usatoday.com            |
+| Cox        | ncoxe1@1und1.de                   |
+| Morris     | rmorriseu@yahoo.com               |
+| Walker     | kwalkerf2@vinaora.com             |
+| Myers      | dmyersfq@amazon.com               |
+| Olson      | folsong9@acquirethisname.com      |
+| Evans      | aevansgg@wordpress.org            |
+| Warren     | awarrenht@addthis.com             |
+| Mendoza    | rmendozajl@g.co                   |
+| Ferguson   | gfergusonka@geocities.jp          |
+| Gonzales   | rgonzaleskv@meetup.com            |
+| Burke      | eburkel4@newsvine.com             |
+| Murray     | cmurraylx@icio.us                 |
+| Gomez      | tgomezm8@ucoz.ru                  |
+| Knight     | dknightm9@quantcast.com           |
+| Rice       | jricemp@columbia.edu              |
+| Carpenter  | rcarpenterov@pagesperso-orange.fr |
+| Bishop     | kbishoppi@ovh.net                 |
+| Jones      | djonesq1@tamu.edu                 |
+| Walker     | swalkerr0@sina.com.cn             |
+| Sanchez    | tsanchezr7@lycos.com              |
++------------+-----------------------------------+*/
+
+/*03 - Traga os funcionarios do sexo masculino ou os funcionarios que trabalhem no setor Jardim*/
+SELECT * FROM FUNCIONARIOS
+WHERE SEXO = 'MASCULINO' OR DEPARTAMENTO = 'JARDIM';
+
+/*Criação do banco de dados.*/
 
 create database projeto2;
 
