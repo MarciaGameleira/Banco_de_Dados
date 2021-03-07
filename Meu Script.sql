@@ -52,8 +52,16 @@ SELECT NOME, SEXO FROM CLIENTE; /*Selecionando colunas específicas.*/
 SELECT NOME, SEXO FROM CLIENTE WHERE SEXO = 'F';
 SELECT NOME, ENDERECO FROM CLIENTE WHERE SEXO = 'M';
 
-
-
+/*Utilizando o operador LIKE com o caracter coringa %.*/
+SELECT * FROM CLIENTE WHERE ENDERECO LIKE '%MG';
+/*+-------+------+---------------------+-----------+----------+-----------------------------------------------+
+ | NOME  | SEXO | EMAIL               | CPF       | TELEFONE | ENDERECO                                      |
+ +-------+------+---------------------+-----------+----------+-----------------------------------------------+
+ | JORGE | M    | NULL                | 885755896 | 58748895 | OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG |
+ | CARLA | F    | CARLA@TERATI.COM.BR |   7745828 | 66587458 | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG   |
+ +-------+------+---------------------+-----------+----------+-----------------------------------------------+*/
+ 
+ 
 
 
 
