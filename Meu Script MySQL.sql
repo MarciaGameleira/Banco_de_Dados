@@ -111,6 +111,142 @@ SELECT SEXO, COUNT(*) AS 'QTDE' FROM CLIENTE GROUP BY SEXO;
    | F    |    4 |
    +------+------+*/
    
+/*Filtrando valores Nulos*/
+USE PROJETO
+
+SELECT NOME, SEXO, ENDERECO
+FROM CLIENTE
+WHERE EMAIL = NULL; /*Esse tipo de consulta utilizando o operador de igualdade retornará um set de dados vazios, pois o NULL é dado do sys.*/
+
+SELECT NOME, SEXO, ENDERECO
+FROM CLIENTE
+WHERE EMAIL IS NULL;
+
+SELECT NOME, SEXO, ENDERECO
+FROM CLIENTE
+WHERE EMAIL IS NOT NULL;
+
+/*Update para atualização de valores nas tabelas.+*/
+SELECT NOME, EMAIL FROM CLIENTE WHERE EMAIL IS NULL;
+/*+------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| NOME   | SEXO | EMAIL               | CPF       | TELEFONE  | ENDERECO                                      |
++--------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| JOAO   | M    | JOAO@GMAIL.COM      | 988638273 | 22923110  | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ  |
+| CELIA  | F    | CELIA@GMAIL.COM     | 541521456 | 25078869  | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ      |
+| JORGE  | M    | NULL                | 885755896 | 58748895  | OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG |
+| LILIAN | F    | NULL                | 887774856 | 947785696 | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ |
+| ANA    | F    | ANA@GLOBO.COM       |  85548962 | 548556985 | PRES ANTONIO CARLOS - CENTRO - SAO PAULO - SP |
+| CARLA  | F    | CARLA@TERATI.COM.BR |   7745828 | 66587458  | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG   |
++--------+------+---------------------+-----------+-----------+-----------------------------------------------+*/
+
+UPDATE CLIENTE SET EMAIL = 'JORGE@GMAIL.COM' WHERE NOME = 'JORGE';
+
+SELECT * FROM CLIENTE;
+/*/------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| NOME   | SEXO | EMAIL               | CPF       | TELEFONE  | ENDERECO                                      |
++--------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| JOAO   | M    | JOAO@GMAIL.COM      | 988638273 | 22923110  | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ  |
+| CELIA  | F    | CELIA@GMAIL.COM     | 541521456 | 25078869  | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ      |
+| JORGE  | M    | JORGE@GMAIL.COM     | 885755896 | 58748895  | OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG |
+| LILIAN | F    | NULL                | 887774856 | 947785696 | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ |
+| ANA    | F    | ANA@GLOBO.COM       |  85548962 | 548556985 | PRES ANTONIO CARLOS - CENTRO - SAO PAULO - SP |
+| CARLA  | F    | CARLA@TERATI.COM.BR |   7745828 | 66587458  | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG   |
++--------+------+---------------------+-----------+-----------+-----------------------------------------------+*/
+
+UPDATE CLIENTE SET EMAIL = 'LILIAL@GMAIL.COM' WHERE NOME = 'LILIAN';
+/*+--------+------+-------------------+-----------+-----------+-----------------------------------------------+
+| NOME   | SEXO | EMAIL               | CPF       | TELEFONE  | ENDERECO                                      |
++--------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| JOAO   | M    | JOAO@GMAIL.COM      | 988638273 | 22923110  | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ  |
+| CELIA  | F    | CELIA@GMAIL.COM     | 541521456 | 25078869  | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ      |
+| JORGE  | M    | JORGE@GMAIL.COM     | 885755896 | 58748895  | OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG |
+| LILIAN | F    | LILIAL@GMAIL.COM    | 887774856 | 947785696 | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ |
+| ANA    | F    | ANA@GLOBO.COM       |  85548962 | 548556985 | PRES ANTONIO CARLOS - CENTRO - SAO PAULO - SP |
+| CARLA  | F    | CARLA@TERATI.COM.BR |   7745828 | 66587458  | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG   |
++--------+------+---------------------+-----------+-----------+-----------------------------------------------+*/
+
+/*Deleção de dados sempre utilizando a cláusula WHERE.*/
+SELECT * FROM CLIENTE;
+/*+--------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| NOME   | SEXO | EMAIL               | CPF       | TELEFONE  | ENDERECO                                      |
++--------+------+---------------------+-----------+-----------+-----------------------------------------------+
+| JOAO   | M    | JOAO@GMAIL.COM      | 988638273 | 22923110  | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ  |
+| CELIA  | F    | CELIA@GMAIL.COM     | 541521456 | 25078869  | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ      |
+| JORGE  | M    | JORGE@GMAIL.COM     | 885755896 | 58748895  | OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG |
+| LILIAN | F    | LILIAN@GMAIL.COM    | 887774856 | 947785696 | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ |
+| ANA    | F    | ANA@GLOBO.COM       |  85548962 | 548556985 | PRES ANTONIO CARLOS - CENTRO - SAO PAULO - SP |
+| CARLA  | F    | CARLA@TERATI.COM.BR |   7745828 | 66587458  | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG   |
++--------+------+---------------------+-----------+-----------+-----------------------------------------------+
+6 rows in set. A tabela possui 6 registros. Ou...*/
+SELECT COUNT(*) FROM CLIENTE; /*A consulta retorna um total de 6 registros.*/
+SELECT COUNT(*) FROM CLIENTE WHERE NOME = 'ANA'; /*A consulta retorna um total de 1 registro.*/
+DELETE FROM CLIENTE WHERE NOME = 'ANA';
+SELECT COUNT(*) FROM CLIENTE; /*A consulta agora retorna um total de 5 registros.*/
+
+INSERT INTO CLIENTE VALUES ('CARLA','F','C.LOPES@UOL.COM',45638854,'4575-0048',
+'RUA COPPER LEAF - WILLIAMSBURG - KITCHENER');
+
+SELECT * FROM CLIENTE;
+
+SELECT * FROM CLIENTE WHERE NOME = 'CARLA' OR EMAIL = 'JOAO@GMAIL.COM';
+
+DELETE FROM CLIENTE WHERE NOME = 'CARLA' OR EMAIL = 'LILIAN@HOTMAIL.COM';
+
+SELECT * FROM CLIENTE;
+/*+--------+------+------------------+-----------+-----------+---------------------------------------------+
+| NOME   | SEXO | EMAIL            | CPF       | TELEFONE  | ENDERECO                                      |
++--------+------+------------------+-----------+-----------+-----------------------------------------------+
+| JOAO   | M    | JOAO@GMAIL.COM   | 988638273 | 22923110  | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ  |
+| CELIA  | F    | CELIA@GMAIL.COM  | 541521456 | 25078869  | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ      |
+| JORGE  | M    | JORGE@GMAIL.COM  | 885755896 | 58748895  | OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG |
+| LILIAN | F    | LILIAN@GMAIL.COM | 887774856 | 947785696 | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ |
++--------+------+------------------+-----------+-----------+-----------------------------------------------+*/
+
+DELETE FROM CLIENTE WHERE NOME = 'CELIA' AND EMAIL = 'LILIAN@HOTMAIL.COM';
+SELECT * FROM CLIENTE; /*Observe que não houve exclusão de nenhum registro pois não há registro que atenda às duas condições acima.*/
+/*+------+------+------------------+-----------+-----------+-----------------------------------------------+
+| NOME   | SEXO | EMAIL            | CPF       | TELEFONE  | ENDERECO                                      |
++--------+------+------------------+-----------+-----------+-----------------------------------------------+
+| JOAO   | M    | JOAO@GMAIL.COM   | 988638273 | 22923110  | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ  |
+| CELIA  | F    | CELIA@GMAIL.COM  | 541521456 | 25078869  | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ      |
+| JORGE  | M    | JORGE@GMAIL.COM  | 885755896 | 58748895  | OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG |
+| LILIAN | F    | LILIAN@GMAIL.COM | 887774856 | 947785696 | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ |
++--------+------+------------------+-----------+-----------+-----------------------------------------------+*/
+
+CREATE DATABASE COMERCIO;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
