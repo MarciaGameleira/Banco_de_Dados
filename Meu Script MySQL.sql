@@ -284,7 +284,15 @@ on c.idcliente = e.id_cliente
 inner join telefone t
 on c.idcliente = t.id_cliente;
 
+INSERT INTO CLIENTE VALUES(NULL,'PAULA','M',NULL,'77437493');
+INSERT INTO ENDERECO VALUES(NULL,'RUA JOAQUIM SILVA','ALVORADA','NITEROI','RJ',7);
 
+CREATE TABLE PRODUTO(
+	IDPRODUTO INT PRIMARY KEY AUTO_INCREMENT,
+	NOME_PRODUTO VARCHAR(30) NOT NULL,
+	PRECO INT,
+	FRETE FLOAT(10,2) NOT NULL
+);
 
 /*Função ALTER TABLE:
 	- Change: altera o nome de uma coluna
