@@ -450,9 +450,12 @@ where c.sexo = 'M';
 | CARMEM  | M    | CARMEM@IG.COM     | 787832213   | RUA GERONIMO       | CENTRO     | RIO DE JANEIRO | RJ     | RES  | 89766554 |
 +---------+------+-------------------+-------------+--------------------+------------+----------------+--------+------+----------+*/
 /* 12, 13, 18, 19 são registros cadastrados com o campo sexo trocado.*/
+select * from cliente where idcliente in (12,13,18,19);
+
 update cliente 
 set sexo = 'F' 
 where idcliente = '12' or idcliente = '13' or idcliente = '18' or idcliente = '19';
+
 /*----------+---------+------+-----------------+-------------+--------------------+------------+----------------+--------+------+----------+
 | idcliente | nome    | sexo | email           | cpf         | rua                | bairro     | cidade         | estado | tipo | numero   |
 +-----------+---------+------+-----------------+-------------+--------------------+------------+----------------+--------+------+----------+
@@ -528,13 +531,41 @@ group by sexo;
 +------+------------+*/
 
 /* IDS E EMAIL DAS MULHERES QUE MOREM NO CENTRO DO RIO DE JANEIRO E NAO TENHAM CELULAR */
-select c.idcliente, c.email, c.sexo, e.bairro, e.estado, t.numero 
-from cliente c 
+use comercio;
+
+select idcliente, email, sexo, 
+	   bairro, estado 
+       tipo, numero 
+from cliente c
 inner join endereco e 
 on c.idcliente = e.id_cliente 
 inner join telefone t 
-on c.idcliente = t.id_cliente 
-where (e.bairro = 'CENTRO' and t.numero is null);
+on c.idcliente = t.id_cliente;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        
 /* PARA UMA CAMPANHA DE PRODUTOS DE BELEZA, O COMERCIAL SOLICITOU UM RELATÓRIO COM O NOME, EMAIL E TELEFONE CELULAR DAS MULHERES QUE MORAM NO ESTADO DE SÃO PAULO 
 VOCÊ TERÁ QUE PASSAR A QUERY PARA GERAR O RELATORIO PARA O PROGRAMADOR */
