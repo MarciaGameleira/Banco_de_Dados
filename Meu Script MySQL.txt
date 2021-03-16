@@ -533,59 +533,370 @@ group by sexo;
 /* IDS E EMAIL DAS MULHERES QUE MOREM NO CENTRO DO RIO DE JANEIRO E NAO TENHAM CELULAR */
 use comercio;
 
-select idcliente, email, sexo, 
-	   bairro, estado 
-       tipo, numero 
+select c.idcliente, c.email, c.sexo, e.bairro, e.cidade, t.tipo, t.numero
 from cliente c
-inner join endereco e 
-on c.idcliente = e.id_cliente 
-inner join telefone t 
-on c.idcliente = t.id_cliente;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-/* PARA UMA CAMPANHA DE PRODUTOS DE BELEZA, O COMERCIAL SOLICITOU UM RELATÓRIO COM O NOME, EMAIL E TELEFONE CELULAR DAS MULHERES QUE MORAM NO ESTADO DE SÃO PAULO 
-VOCÊ TERÁ QUE PASSAR A QUERY PARA GERAR O RELATORIO PARA O PROGRAMADOR */
-select c.nome, c.email, c.sexo, 
-       t.tipo, t.numero, 
-       e.estado 
-from cliente c 
-inner join telefone t
-on c.idcliente = t.id_cliente
 inner join endereco e
 on c.idcliente = e.id_cliente
-where sexo = 'F' 
-and tipo = 'CEL' and estado = 'SAO PAULO';
+inner join telefone t
+on c.idcliente = t.id_cliente;
 
-SELECT C.IDCLIENTE, C.EMAIL, C.NOME, C.SEXO, T.TIPO, E.BAIRRO, E.CIDADE
+select c.idcliente, c. nome, c.email, c.sexo, e.bairro, e.cidade, t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where sexo = 'F';
+
+select c.idcliente, c.nome, c.email, c.sexo, 
+       e.bairro, e.cidade, 
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where sexo = 'F' 
+and bairro = 'centro'
+and e.cidade = 'RIO DE JANEIRO';
+
+alter table telefone modify NUMERO varchar(10);
+
+UPDATE TELEFONE
+SET TIPO = 'CEL' 
+WHERE (ID_CLIENTE = 19 AND IDTELEFONE = 27);
+
+UPDATE TELEFONE
+SET NUMERO = NULL 
+WHERE (ID_CLIENTE = 19 AND IDTELEFONE = 27);
+
+select c.idcliente, c.nome, c.email, c.sexo, 
+       e.bairro, e.cidade, 
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where (tipo <> 'cel' and sexo = 'F' and bairro = 'centro' and e.cidade = 'RIO DE JANEIRO')
+or tipo = 'cel' and numero is null;
+
+/*QUERIE FINAL*/
+select c.idcliente,
+       ifnull (c.email, '--------') as 'e-mail'
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente
+where (tipo <> 'cel' and sexo = 'F' and bairro = 'centro' and e.cidade = 'RIO DE JANEIRO')
+or (tipo = 'cel' and numero is null);
+
+     
+/* PARA UMA CAMPANHA DE PRODUTOS DE BELEZA, O COMERCIAL SOLICITOU UM RELATÓRIO COM O NOME, EMAIL E TELEFONE CELULAR DAS MULHERES QUE MORAM NO ESTADO DE SÃO PAULO 
+VOCÊ TERÁ QUE PASSAR A QUERY PARA GERAR O RELATORIO PARA O PROGRAMADOR */
+SELECT C.NOME, C.EMAIL, C.SEXO, T.TIPO, T.NUMERO, E.ESTADO
 FROM CLIENTE C
-INNER JOIN ENDERECO E
-ON C.IDCLIENTE = E.ID_CLIENTE
 INNER JOIN TELEFONE T
 ON C.IDCLIENTE = T.ID_CLIENTE
-WHERE SEXO = 'F'
-AND BAIRRO = 'CENTRO' AND CIDADE = 'SAO PAULO'
-AND (TIPO = 'RES' OR TIPO = 'COM');
+INNER JOIN ENDERECO E
+ON C.IDCLIENTE = E.ID_CLIENTE;
+
+SELECT C.NOME, C.EMAIL, C.SEXO, T.TIPO, T.NUMERO, E.ESTADO
+FROM CLIENTE C
+INNER JOIN TELEFONE T
+ON C.IDCLIENTE = T.ID_CLIENTE
+INNER JOIN ENDERECO E
+ON C.IDCLIENTE = E.ID_CLIENTE
+WHERE SEXO = 'F' AND TIPO = 'CEL' AND ESTADO = 'SP';
+
+
+/* FUNÇÃO IFNULL */
+SELECT C.NOME, C.EMAIL, T.NUMERO
+FROM CLIENTE C
+INNER JOIN TELEFONE T
+ON C.IDCLIENTE = T.ID_CLIENTE;
+/*+-------+-------------------+----------+
+| NOME    | EMAIL             | NUMERO   |
++---------+-------------------+----------+
+| JORGE   | JORGE@IG.COM      | 78458743 |
+| JORGE   | JORGE@IG.COM      | 56576876 |
+| JOAO    | JOAOA@IG.COM      | 87866896 |
+| CARLOS  | CARLOSA@IG.COM    | 54768899 |
+| JOAO    | JOAOA@IG.COM      | 99667587 |
+| ANA     | ANA@IG.COM        | 78989765 |
+| ANA     | ANA@IG.COM        | 99766676 |
+| JOAO    | JOAOA@IG.COM      | 66687899 |
+| JORGE   | JORGE@IG.COM      | 89986668 |
+| CARLOS  | CARLOSA@IG.COM    | 88687909 |
+| FLAVIO  | FLAVIO@IG.COM     | 68976565 |
+| FLAVIO  | FLAVIO@IG.COM     | 99656675 |
+| GIOVANA | NULL              | 33567765 |
+| GIOVANA | NULL              | 88668786 |
+| GIOVANA | NULL              | 55689654 |
+| KARLA   | KARLA@GMAIL.COM   | 88687979 |
+| DANIELE | DANIELE@GMAIL.COM | 88965676 |
+| EDUARDO | NULL              | 89966809 |
+| ANTONIO | ANTONIO@IG.COM    | 88679978 |
+| ANTONIO | ANTONIO@UOL.COM   | 99655768 |
+| ELAINE  | ELAINE@GLOBO.COM  | 89955665 |
+| CARMEM  | CARMEM@IG.COM     | 77455786 |
+| CARMEM  | CARMEM@IG.COM     | 89766554 |
+| ADRIANA | ADRIANA@GMAIL.COM | 77755785 |
+| JOICE   | JOICE@GMAIL.COM   | 44522578 |
++---------+-------------------+----------+*/
+
+SELECT C.NOME,
+	   IFNULL(C.EMAIL, '---------') AS 'E-MAIL',
+	   T.NUMERO
+FROM CLIENTE C
+INNER JOIN TELEFONE T
+ON C.IDCLIENTE = T.ID_CLIENTE;
+
+/*+-------+-------------------+----------+
+| NOME    | E-MAIL            | NUMERO   |
++---------+-------------------+----------+
+| JORGE   | JORGE@IG.COM      | 78458743 |
+| JORGE   | JORGE@IG.COM      | 56576876 |
+| JOAO    | JOAOA@IG.COM      | 87866896 |
+| CARLOS  | CARLOSA@IG.COM    | 54768899 |
+| JOAO    | JOAOA@IG.COM      | 99667587 |
+| ANA     | ANA@IG.COM        | 78989765 |
+| ANA     | ANA@IG.COM        | 99766676 |
+| JOAO    | JOAOA@IG.COM      | 66687899 |
+| JORGE   | JORGE@IG.COM      | 89986668 |
+| CARLOS  | CARLOSA@IG.COM    | 88687909 |
+| FLAVIO  | FLAVIO@IG.COM     | 68976565 |
+| FLAVIO  | FLAVIO@IG.COM     | 99656675 |
+| GIOVANA | ---------         | 33567765 |
+| GIOVANA | ---------         | 88668786 |
+| GIOVANA | ---------         | 55689654 |
+| KARLA   | KARLA@GMAIL.COM   | 88687979 |
+| DANIELE | DANIELE@GMAIL.COM | 88965676 |
+| EDUARDO | ---------         | 89966809 |
+| ANTONIO | ANTONIO@IG.COM    | 88679978 |
+| ANTONIO | ANTONIO@UOL.COM   | 99655768 |
+| ELAINE  | ELAINE@GLOBO.COM  | 89955665 |
+| CARMEM  | CARMEM@IG.COM     | 77455786 |
+| CARMEM  | CARMEM@IG.COM     | 89766554 |
+| ADRIANA | ADRIANA@GMAIL.COM | 77755785 |
+| JOICE   | JOICE@GMAIL.COM   | 44522578 |
++---------+-------------------+----------+*/
+
+
+/* VIEWS */
+
+CREATE VIEW V_REL_GERAL AS
+select c.idcliente, c.email, c.sexo, 
+       e.bairro, e.cidade, 
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente;
+
+DESC V_REL_GERAL;
+
+select idcliente, email, numero
+from V_REL_GERAL;
+
+DROP VIEW V_REL_GERAL;
+
+CREATE VIEW VIEW_REL_GERAL AS
+select c.idcliente, c.email, c.sexo, 
+       e.bairro, e.cidade, 
+       t.tipo, t.numero
+from cliente c
+inner join endereco e
+on c.idcliente = e.id_cliente
+inner join telefone t
+on c.idcliente = t.id_cliente;
+
+/* Order by, ASC e DESC */
+
+SELECT * FROM VIEW_REL_GERAL;
+
+SELECT * FROM VIEW_REL_GERAL
+ORDER BY IDCLIENTE ASC, NUMERO DESC;
+
+
+/* Alterando o delimitador para programar */
+
+delimiter $
+
+/* Stored Procedures = Procedimentos armazenados */
+
+delimiter $
+
+create procedure NOME_DA_PROCEDURE
+begin
+
+	escreva qualquer coisa no bloco de programação;
+
+end
+$
+
+delimiter ;
+
+
+
+
+CREATE TABLE CURSO(
+	IDCURSO INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30) NOT NULL,
+	HORAS INT(3) NOT NULL,
+	VALOR FLOAT(10,2) NOT NULL
+);
+
+
+/*Criando uma procedure para inserção de dados*/
+DELIMITER #
+
+CREATE PROCEDURE CAD_CURSOS(NOME VARCHAR(30),
+	                        HORAS INT(3),
+	  						VALOR FLOAT(10,2))
+begin
+
+	INSERT INTO CURSO VALUES(NULL, NOME, HORAS, VALOR);
+
+END
+#
+
+DELIMITER ;
+
+/* Chamando uma Procedures */
+
+CALL CAD_CURSOS("PENTAHO", 20, 100.00);
+CALL CAD_CURSOS("POWER BI", 25, 120.00);
+CALL CAD_CURSOS("PYTHON ", 45, 237.00);
+CALL CAD_CURSOS("TABLEAU", 20, 139.00);
+CALL CAD_CURSOS("INTEGRATION SERVICES", 35, 260.00);
+CALL CAD_CURSOS("EXCEL", 35, 150.00);
+
+
+/* FUNCOES DE AGREGACAO NUMERICAS */
+
+CREATE TABLE VENDEDORES(
+	IDVENDEDOR INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30),
+	SEXO CHAR(1),
+	JANEIRO FLOAT(10,2),
+	FEVEREIRO FLOAT(10,2),
+	MARCO FLOAT(10,2)
+);
+
+INSERT INTO VENDEDORES VALUES(NULL,'CARLOS','M',76234.78,88346.87,5756.90);
+INSERT INTO VENDEDORES VALUES(NULL,'MARIA','F',5865.78,6768.87,4467.90);
+INSERT INTO VENDEDORES VALUES(NULL,'ANTONIO','M',78769.78,6685.87,6664.90);
+INSERT INTO VENDEDORES VALUES(NULL,'CLARA','F',5779.78,446886.87,8965.90);
+INSERT INTO VENDEDORES VALUES(NULL,'ANDERSON','M',676545.78,77544.87,578665.90);
+INSERT INTO VENDEDORES VALUES(NULL,'IVONE','F',57789.78,44774.87,68665.90);
+INSERT INTO VENDEDORES VALUES(NULL,'JOAO','M',4785.78,66478.87,6887.90);
+INSERT INTO VENDEDORES VALUES(NULL,'CELIA','F',89667.78,57654.87,5755.90);
+
+
+/* MAX - TRAZ O VALOR MAXIMO DE UMA COLUNA */
+
+SELECT MAX(FEVEREIRO) AS MAIOR_FEV
+FROM VENDEDORES;
+
+
+/* MIN - TRAZ O VALOR MINIMO DE UMA COLUNA */
+
+SELECT MIN(FEVEREIRO) AS MENOR_FEV
+FROM VENDEDORES;
+
+/* AVG - TRAZ O VALOR MEDIO DE UMA COLUNA */
+
+SELECT AVG(FEVEREIRO) AS MEDIA_FEV
+FROM VENDEDORES;
+
+SELECT MIN(JANEIRO) AS MENOR_JAN,
+	   MAX(JANEIRO) AS MAIOR_JAN,
+	   TRUNCATE(AVG(JANEIRO),2) AS MÉDIA_JAN,
+	   SUM(JANEIRO) AS TOTAL_JAN
+FROM VENDEDORES;
+
+/*+---------+-----------+-----------+-----------+
+| MENOR_JAN | MAIOR_JAN | MÉDIA_JAN | TOTAL_JAN |
++-----------+-----------+-----------+-----------+
+|   4785.78 | 676545.75 | 124429.90 | 995439.21 |
++-----------+-----------+-----------+-----------+*/
+
+SELECT MIN(JANEIRO) AS MENOR_JAN,
+	   MAX(JANEIRO) AS MAIOR_JAN,
+	   TRUNCATE(AVG(JANEIRO),2) AS MÉDIA_JAN,
+	   SUM(JANEIRO) AS TOTAL_JAN
+FROM VENDEDORES;
+
+SELECT SEXO, SUM(MARCO) AS TOTAL_MAR
+FROM VENDEDORES
+GROUP BY SEXO;
+
+
+/* Subqueries */
+
+/* Qual vendedor teve menor vendas no mês de Março? */
+
+select min(marco) from vendedores;
+
+select nome, marco as min_marco
+from vendedores
+where marco = (select min(marco) from vendedores);
+
+/* Qual vendedor teve maior vendas no mês de Março? */
+
+select max(marco) from vendedores;
+
+select nome, marco as max_marco
+from vendedores
+where marco = (select max(marco) from vendedores);
+
+/* Qual vendedor teve vendas acima da média no mês de Março? */
+
+select avg(marco) from vendedores;
+
+select nome, marco from vendedores
+where marco > (select avg(marco) from vendedores);
+
+/* Operações em linhas */
+
+
+select nome, 
+       janeiro, 
+       fevereiro, 
+       marco, 
+       (janeiro + fevereiro + marco) as 'total',
+       truncate(((janeiro + fevereiro + marco)/3), 2) as 'media'
+from vendedores;
+
+
+
+/* Organização de chaves e dicionário de dados. */
+/* A intenção é organizar o script e definir as PKs e FKs em comando de 'Alter Table' */
+
+USE COMERCIO;
+
+CREATE TABLE CLIENTE(
+	IDCLIENTE INT,
+	NOME VARCHAR (30) NOT NULL
+);
+
+CREATE TABLE TELEFONE(
+	IDTELEFONE INT,
+	TIPO CHAR(3) NOT NULL,
+	NUMERO VARCHAR(10) NOT NULL,
+	ID_CLIENTE INT 
+);
+
+ALTER TABLE CLIENTE ADD CONSTRAINT PK_CLIENTE
+PRIMARY KEY(IDCLIENTE);
+
+ALTER TABLE TELEFONE ADD CONSTRAINT PK_TELEFONE
+PRIMARY KEY(IDTELEFONE);
+
+ALTER TABLE TELEFONE ADD CONSTRAINT FK_CLIENTE_TELEFONE
+FOREIGN KEY(ID_CLIENTE) REFERENCES CLIENTE(IDCLIENTE);
+
+
